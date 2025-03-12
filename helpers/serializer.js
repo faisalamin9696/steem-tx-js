@@ -199,7 +199,7 @@ const SignedBlockHeaderSerializer = ObjectSerializer([
 const ChainPropertiesSerializer = ObjectSerializer([
   ["account_creation_fee", AssetSerializer],
   ["maximum_block_size", UInt32Serializer],
-  ["hbd_interest_rate", UInt16Serializer],
+  ["sbd_interest_rate", UInt16Serializer],
 ])
 
 const OperationDataSerializer = (operationId, definitions) => {

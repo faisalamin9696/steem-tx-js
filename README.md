@@ -134,7 +134,7 @@ hiveTx.call(method, params = [], timeout = 10): Promise
 Example:
 
 ```js
-hiveTx.call('condenser_api.get_accounts', [['mahdiyari']]).then(res => console.log(res))
+hiveTx.call('condenser_api.get_accounts', [['faisalamin']]).then(res => console.log(res))
 ```
 
 **Sign message and verify sginature:**
@@ -181,7 +181,7 @@ const trx = new hiveTx.Transaction({
   operations: [[
       'vote',
       {
-          voter: 'mahdiyari',
+          voter: 'faisalamin',
           author: 'afa.hb03',
           permlink: 'esp-engcoastal-sentry-splinterlands-art-contest-week-242-by-afahb03',
           weight: 2000
@@ -242,7 +242,7 @@ const filter = makeBitMaskFilter(
     op.transfer_to_vesting
   ]
 )
-call('condenser_api.get_account_history', ['mahdiyari', -1, 1, ...filter])
+call('condenser_api.get_account_history', ['faisalamin', -1, 1, ...filter])
   .then(res => console.log(res))
 ```
 
@@ -252,15 +252,15 @@ Needed for `witness_set_properties` operation.
 Example:
 ```js
 import { buildWitnessSetProperties } from 'hive-tx/helpers/utils.js'
-const owner = 'mahdiyari'
+const owner = 'faisalamin'
 const props = {
   key: 'STM1111111111111111111111111111111114T1Anm', // Required - signing key
   account_creation_fee: '0.000 HIVE', // optional
   account_subsidy_budget: 10000, // optional
   account_subsidy_decay: 330782, // optional
   maximum_block_size: 65536, // optional
-  hbd_interest_rate: 0, // optional
-  hbd_exchange_rate: { base: '0.250 HBD', quote: '1.000 HIVE' }, // optional
+  sbd_interest_rate: 0, // optional
+  sbd_exchange_rate: { base: '0.250 HBD', quote: '1.000 HIVE' }, // optional
   url: 'https://testurl', // optional
   new_signing_key: "STM1111111111111111111111111111111114T1Anm" // optional
 }
@@ -273,7 +273,7 @@ Hive-tx will retry and change the node to the next in the array IF `hiveTx.confi
 By default hive-tx will use the timeout and retry values from the global config but you can supply timeout and retry values per request as well.  
 ```js
 // timeout: 5, retry: 3
-hiveTx.call('condenser_api.get_accounts', [['mahdiyari']], 5, 3).then(res => console.log(res))
+hiveTx.call('condenser_api.get_accounts', [['faisalamin']], 5, 3).then(res => console.log(res))
 // retrying applies to broadcasting as well
 tx.broadcast(5, 3)
 ```
