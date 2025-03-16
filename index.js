@@ -9,7 +9,7 @@ import { config } from './config.js'
 import { Memo } from './helpers/memo.js'
 import * as utils from './helpers/utils.js'
 
-/** Transaction for Hive blockchain */
+/** Transaction for Steem blockchain */
 class Transaction {
   /** A transaction object could be passed or created later
    * @param {{}} trx Object of transaction - Optional

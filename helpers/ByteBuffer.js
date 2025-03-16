@@ -10,7 +10,7 @@
 
  * modified by @xmcl/bytebuffer
 
- * And customized for hive-tx
+ * And customized for steem-tx
 
  */
 

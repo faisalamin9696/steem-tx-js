@@ -1,37 +1,37 @@
-import { Serializer } from './serializer.js'
-import { ByteBuffer } from './ByteBuffer.js'
+import { Serializer } from "./serializer.js"
+import { ByteBuffer } from "./ByteBuffer.js"
 
 /** Return null for a valid username */
 export const validateUsername = (username) => {
-  let suffix = 'Account name should '
+  let suffix = "Account name should "
   if (!username) {
-    return suffix + 'not be empty.'
+    return suffix + "not be empty."
   }
   const length = username.length
   if (length < 3) {
-    return suffix + 'be longer.'
+    return suffix + "be longer."
   }
   if (length > 16) {
-    return suffix + 'be shorter.'
+    return suffix + "be shorter."
   }
   if (/\./.test(username)) {
-    suffix = 'Each account segment should '
+    suffix = "Each account segment should "
   }
-  const ref = username.split('.')
+  const ref = username.split(".")
   const len = ref.length
   for (let i = 0; i < len; i++) {
     const label = ref[i]
     if (!/^[a-z]/.test(label)) {
-      return suffix + 'start with a lowercase letter.'
+      return suffix + "start with a lowercase letter."
     }
     if (!/^[a-z0-9-]*$/.test(label)) {
-      return suffix + 'have only lowercase letters, digits, or dashes.'
+      return suffix + "have only lowercase letters, digits, or dashes."
     }
     if (!/[a-z0-9]$/.test(label)) {
-      return suffix + 'end with a lowercase letter or digit.'
+      return suffix + "end with a lowercase letter or digit."
     }
     if (!(label.length >= 3)) {
-      return suffix + 'be longer'
+      return suffix + "be longer"
     }
   }
   return null
@@ -86,8 +86,6 @@ export const operations = {
   update_proposal_votes: 45,
   remove_proposal: 46,
   update_proposal: 47,
-  collateralized_convert: 48,
-  recurrent_transfer: 49,
   // virtual ops
   fill_convert_request: 50,
   author_reward: 51,
@@ -107,31 +105,7 @@ export const operations = {
   clear_null_account_balance: 65,
   proposal_pay: 66,
   sps_fund: 67,
-  hardfork_hive: 68,
-  hardfork_hive_restore: 69,
-  delayed_voting: 70,
-  consolidate_treasury_balance: 71,
-  effective_comment_vote: 72,
-  ineffective_delete_comment: 73,
-  sps_convert: 74,
-  expired_account_notification: 75,
-  changed_recovery_account: 76,
-  transfer_to_vesting_completed: 77,
-  pow_reward: 78,
-  vesting_shares_split: 79,
-  account_created: 80,
-  fill_collateralized_convert_request: 81,
-  system_warning: 82,
-  fill_recurrent_transfer: 83,
-  failed_recurrent_transfer: 84,
-  limit_order_cancelled: 85,
-  producer_missed: 86,
-  proposal_fee: 87,
-  collateralized_convert_immediate_conversion: 88,
   escrow_approved: 89,
-  escrow_rejected: 90,
-  proxy_cleared: 91,
-  declined_voting_rights: 92
 }
 
 /**
@@ -140,9 +114,7 @@ export const operations = {
 export const makeBitMaskFilter = (allowedOperations) => {
   return allowedOperations
     .reduce(reduceFunction, [BigInt(0), BigInt(0)])
-    .map((value) =>
-      (value !== BigInt(0)) ? value.toString() : null
-    )
+    .map((value) => (value !== BigInt(0) ? value.toString() : null))
 }
 const reduceFunction = ([low, high], allowedOperation) => {
   if (allowedOperation < 64) {
@@ -160,30 +132,30 @@ export const buildWitnessSetProperties = (owner, props) => {
   const data = {
     extensions: [],
     owner,
-    props: []
+    props: [],
   }
   for (const key of Object.keys(props)) {
     let type
     switch (key) {
-      case 'key':
-      case 'new_signing_key':
+      case "key":
+      case "new_signing_key":
         type = Serializer.PublicKey
         break
-      case 'account_subsidy_budget':
-      case 'account_subsidy_decay':
-      case 'maximum_block_size':
+      case "account_subsidy_budget":
+      case "account_subsidy_decay":
+      case "maximum_block_size":
         type = Serializer.UInt32
         break
-      case 'hbd_interest_rate':
+      case "sbd_interest_rate":
         type = Serializer.UInt16
         break
-      case 'url':
+      case "url":
         type = Serializer.String
         break
-      case 'hbd_exchange_rate':
+      case "sbd_exchange_rate":
         type = Serializer.Price
         break
-      case 'account_creation_fee':
+      case "account_creation_fee":
         type = Serializer.Asset
         break
       default:
@@ -192,7 +164,7 @@ export const buildWitnessSetProperties = (owner, props) => {
     data.props.push([key, serialize(type, props[key])])
   }
   data.props.sort((a, b) => a[0].localeCompare(b[0]))
-  return ['witness_set_properties', data]
+  return ["witness_set_properties", data]
 }
 
 const serialize = (serializer, data) => {
@@ -203,5 +175,5 @@ const serialize = (serializer, data) => {
   serializer(buffer, data)
   buffer.flip()
   // `props` values must be hex
-  return buffer.toString('hex')
+  return buffer.toString("hex")
 }

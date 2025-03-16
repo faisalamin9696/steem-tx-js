@@ -2,15 +2,14 @@ import { PrivateKey as PK } from './helpers/PrivateKey'
 import { PublicKey as PubK } from './helpers/PublicKey'
 import { Signature as Sig } from './helpers/Signature'
 import { Memo as MemoType } from './helpers/memo'
-import {buildWitnessSetProperties, makeBitMaskFilter, validateUsername, operations } from './helpers/utils'
 
-declare module 'hive-tx'
+declare module 'steem-tx'
 
 export class PrivateKey extends PK {}
 export class PublicKey extends PubK {}
 export class Signature extends Sig {}
 
-/** Transaction for Hive blockchain */
+/** Transaction for steem blockchain */
 export class Transaction {
   constructor(trx?: object)
 
@@ -72,7 +71,7 @@ export class Transaction {
   }
 }
 
-/** hive-tx configurations */
+/** steem-tx configurations */
 export const config: {
   address_prefix: string
   chain_id: string
@@ -83,7 +82,7 @@ export const config: {
 }
 
 /**
- * Make calls to a hive node
+ * Make calls to a steem node
  * @param {string}method - e.g. condenser_api.get_dynamic_global_properties
  * @param {[any]|object}params - array or object
  * @param {number}timeout - optional - default 5 seconds
@@ -92,10 +91,3 @@ export const config: {
 export function call(method: string, params?: any[] | object, timeout?: number, retry?: number): Promise<any>
 
 export const Memo: MemoType
-
-export const utils = {
-  makeBitMaskFilter,
-  validateUsername,
-  operations,
-  buildWitnessSetProperties
-}

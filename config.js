@@ -1,12 +1,16 @@
 export const config = {
   node: [
-    'https://api.hive.blog',
-    'https://api.deathwing.me',
-    'https://rpc.mahdiyari.info',
-    'https://techcoderx.com',
-    'https://hiveapi.actifit.io'
+    'https://api.steemit.com',
+    'https://api.upvu.org',
+    'https://api.justyy.com',
+    'https://steemd.steemworld.org',
+    'https://api.steem.fans',
+    'https://api.dlike.io',
+    'https://steemapi.boylikegirl.club',
+    'https://api.pennsif.net'
+
   ],
-  chain_id: 'beeab0de00000000000000000000000000000000000000000000000000000000',
+  chain_id: '0000000000000000000000000000000000000000000000000000000000000000',
   address_prefix: 'STM',
   axiosAdapter: null,
   timeout: 5, // 5 seconds

@@ -1,14 +1,10 @@
-/** Class representing a hive asset,
- * e.g. `1.000 HIVE` or `12.112233 VESTS`. */
+/** Class representing a steem asset,
+ * e.g. `1.000 STEEM` or `12.112233 VESTS`. */
 export class Asset {
-  /** Create a new Asset instance from a string, e.g. `42.000 HIVE`. */
-  static fromString (string, expectedSymbol = null) {
-    const [amountString, symbol] = string.split(' ')
-    if (
-      ['STEEM', 'VESTS', 'SBD', 'TESTS', 'TBD', 'HIVE', 'HBD'].indexOf(
-        symbol
-      ) === -1
-    ) {
+  /** Create a new Asset instance from a string, e.g. `42.000 STEEM`. */
+  static fromString(string, expectedSymbol = null) {
+    const [amountString, symbol] = string.split(" ")
+    if (["STEEM", "VESTS", "SBD", "TESTS", "TBD"].indexOf(symbol) === -1) {
       throw new Error(`Invalid asset symbol: ${symbol}`)
     }
     if (expectedSymbol && symbol !== expectedSymbol) {
@@ -28,7 +24,7 @@ export class Asset {
    * @param symbol Symbol to use when created from number. Will also be used to validate
    *               the asset, throws if the passed value has a different symbol than this.
    */
-  static from (value, symbol = null) {
+  static from(value, symbol = null) {
     if (value instanceof Asset) {
       if (symbol && value.symbol !== symbol) {
         throw new Error(
@@ -36,43 +32,41 @@ export class Asset {
         )
       }
       return value
-    } else if (typeof value === 'number' && Number.isFinite(value)) {
-      return new Asset(value, symbol || 'STEEM')
-    } else if (typeof value === 'string') {
+    } else if (typeof value === "number" && Number.isFinite(value)) {
+      return new Asset(value, symbol || "STEEM")
+    } else if (typeof value === "string") {
       return Asset.fromString(value, symbol)
     } else {
       throw new Error(`Invalid asset '${String(value)}'`)
     }
   }
 
-  // We convert HIVE & HBD strings to STEEM & SBD because the serialization should be based on STEEM & SBD
-  constructor (amount, symbol) {
+  // We convert STEEM & SBD strings to STEEM & SBD because the serialization should be based on STEEM & SBD
+  constructor(amount, symbol) {
     this.amount = amount
     this.symbol =
-      symbol === 'HIVE' ? 'STEEM' : symbol === 'HBD' ? 'SBD' : symbol
+      symbol === "STEEM" ? "STEEM" : symbol === "SBD" ? "SBD" : symbol
   }
 
   /** Return asset precision. */
-  getPrecision () {
+  getPrecision() {
     switch (this.symbol) {
-      case 'TESTS':
-      case 'TBD':
-      case 'STEEM':
-      case 'SBD':
-      case 'HBD':
-      case 'HIVE':
+      case "TESTS":
+      case "TBD":
+      case "STEEM":
+      case "SBD":
         return 3
-      case 'VESTS':
+      case "VESTS":
         return 6
     }
   }
 
-  /** Return a string representation of this asset, e.g. `42.000 HIVE`. */
-  toString () {
+  /** Return a string representation of this asset, e.g. `42.000 STEEM`. */
+  toString() {
     return `${this.amount.toFixed(this.getPrecision())} ${this.symbol}`
   }
 
-  toJSON () {
+  toJSON() {
     return this.toString()
   }
 }

@@ -4,11 +4,11 @@ const webpack = require('webpack')
 module.exports = {
   entry: './index.js',
   output: {
-    filename: 'hive-tx.min.js',
+    filename: 'steem-tx.min.js',
     path: path.resolve(__dirname, 'dist'),
     globalObject: 'this',
     library: {
-      name: 'hiveTx',
+      name: 'steemTx',
       type: 'umd'
     }
   },

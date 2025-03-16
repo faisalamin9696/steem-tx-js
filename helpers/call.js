@@ -5,7 +5,7 @@ let nodeIndex = 0
 let numTries = 0
 
 /**
- * Make calls to hive node and retry - Only if provided config.node is an array
+ * Make calls to steem node and retry - Only if provided config.node is an array
  * @param {string}method - e.g. condenser_api.get_dynamic_global_properties
  * @param {[any]|object}params - an array or object
  * @param {number}timeout - optional - default 5 seconds

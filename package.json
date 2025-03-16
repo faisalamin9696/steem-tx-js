@@ -1,7 +1,7 @@
 {
-  "name": "hive-tx",
-  "version": "6.0.6",
-  "description": "Create, sign, and broadcast transactions on Hive blockchain",
+  "name": "@steempro/steem-tx-js",
+  "version": "1.0.2",
+  "description": "Create, sign, and broadcast transactions on Steem blockchain",
   "type": "module",
   "module": "./index.js",
   "exports": "./index.js",
@@ -10,15 +10,15 @@
     "build:browser": "webpack --config webpack.config.cjs --mode=production"
   },
   "keywords": [
-    "hive",
+    "steem",
     "tx",
     "transaction",
     "sign",
     "broadcast",
     "blockchain",
-    "hive-tx"
+    "steem-tx"
   ],
-  "author": "Mahdi Yari",
+  "author": "faisalamin",
   "license": "MIT",
   "dependencies": {
     "@noble/ciphers": "^1.2.1",
@@ -27,10 +27,10 @@
     "axios": "^1.7.9",
     "bs58": "6.0.0"
   },
-  "homepage": "https://github.com/mahdiyari/hive-tx-js",
+  "homepage": "https://github.com/faisalamin9696/steem-tx-js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mahdiyari/hive-tx-js.git"
+    "url": "https://github.com/faisalamin9696/steem-tx-js.git"
   },
   "devDependencies": {
     "process": "0.11.10",

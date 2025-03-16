@@ -7,8 +7,8 @@ export function validateUsername (username: string): null | string
  * Make bitmask filter to be used with get_account_history call
  * @param allowedOperations Array of operations index numbers
  * @example
- * import { call } from 'hive-tx'
- * import { makeBitMaskFilter, operations as op } from 'hive-tx/helpers/utils.js'
+ * import { call } from 'steem-tx'
+ * import { makeBitMaskFilter, operations as op } from 'steem-tx/helpers/utils.js'
  * const filter = makeBitMaskFilter(
  *   [
  *     op.transfer,
@@ -30,23 +30,23 @@ interface WitnessProps {
   key: PublicKey | string
   maximum_block_size?: number
   new_signing_key?: PublicKey | string | null
-  hbd_exchange_rate?: { base: string, quote: string }
-  hbd_interest_rate?: number
+  sbd_exchange_rate?: { base: string, quote: string }
+  sbd_interest_rate?: number
   url?: string
 }
 
 /** Needed for creating witness_set_properties operation
  * @example
- * import { buildWitnessSetProperties } from 'hive-tx/helpers/utils.js'
- * const owner = 'mahdiyari'
+ * import { buildWitnessSetProperties } from 'steem-tx/helpers/utils.js'
+ * const owner = 'faisalamin'
  * const props = {
  *   key: 'STM1111111111111111111111111111111114T1Anm', // Required - signing key
- *   account_creation_fee: '0.000 HIVE', // optional
+ *   account_creation_fee: '0.000 STEEM', // optional
  *   account_subsidy_budget: 10000, // optional
  *   account_subsidy_decay: 330782, // optional
  *   maximum_block_size: 65536, // optional
- *   hbd_interest_rate: 0, // optional
- *   hbd_exchange_rate: { base: '0.250 HBD', quote: '1.000 HIVE' }, // optional
+ *   sbd_interest_rate: 0, // optional
+ *   sbd_exchange_rate: { base: '0.250 SBD', quote: '1.000 STEEM' }, // optional
  *   url: 'https://testurl', // optional
  *   new_signing_key: "STM1111111111111111111111111111111114T1Anm" // optional
  * }
